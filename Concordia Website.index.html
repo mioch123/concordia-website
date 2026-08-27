@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<title>Eetcafé Concordia — Student Bar in Rotterdam</title>
+<meta name="description" content="Concordia Studentbar, Oostzeedijk 56b Rotterdam. Free pool and darts, pub quiz, live football and happy hour twice a week. Open Tue–Sat 17:00–01:00.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:#FBF8F3;color:#1B1410;font-family:Barlow,system-ui,sans-serif;overflow-x:hidden}
+a{color:#8A5A0B;text-decoration:none}
+a:hover{color:#1B1410}
+::selection{background:#F7C31A;color:#1B1410}
+@keyframes cdPulse{0%,100%{opacity:1}50%{opacity:.35}}
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(251,248,243,.93);backdrop-filter:blur(14px);border-bottom:1px solid rgba(27,20,16,.1)">
+  <div style="{{ headerBarStyle }}">
+    <a href="#top" style="flex:none;display:block"><img src="./logo-concordia-dark.png" alt="Concordia Studentbar" style="{{ headerLogoStyle }}"></a>
+    <div style="flex:1"></div>
+    <nav style="{{ navRowStyle }}">
+      <a href="#menu" style="font:500 14px Oswald,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#1B1410" style-hover="color:#8A5A0B">{{ t.navMenu }}</a>
+      <a href="#whatson" style="font:500 14px Oswald,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#1B1410" style-hover="color:#8A5A0B">{{ t.navWhatsOn }}</a>
+      <a href="#groups" style="font:500 14px Oswald,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#1B1410" style-hover="color:#8A5A0B">{{ t.navGroups }}</a>
+      <a href="#reviews" style="font:500 14px Oswald,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#1B1410" style-hover="color:#8A5A0B">{{ t.navReviews }}</a>
+      <a href="#visit" style="font:500 14px Oswald,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#1B1410" style-hover="color:#8A5A0B">{{ t.navVisit }}</a>
+    </nav>
+    <div style="{{ langWrapStyle }}">
+      <button type="button" onClick="{{ setEN }}" style="{{ enBtn }}">EN</button>
+      <button type="button" onClick="{{ setNL }}" style="{{ nlBtn }}">NL</button>
+    </div>
+    <a href="#groups" style="{{ bookBtnStyle }}" style-hover="background:#8A5A0B">{{ t.navBook }}</a>
+    <button type="button" onClick="{{ toggleNav }}" aria-label="Menu" style="{{ burgerStyle }}">
+      <span style="display:block;width:20px;height:2px;background:#1B1410"></span>
+      <span style="display:block;width:20px;height:2px;background:#1B1410;margin-top:5px"></span>
+      <span style="display:block;width:20px;height:2px;background:#1B1410;margin-top:5px"></span>
+    </button>
+  </div>
+  <div style="{{ drawerStyle }}">
+    <a href="#menu" onClick="{{ closeNav }}" style="font:500 16px Oswald,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#1B1410;padding:15px 24px;border-top:1px solid rgba(27,20,16,.1)">{{ t.navMenu }}</a>
+    <a href="#whatson" onClick="{{ closeNav }}" style="font:500 16px Oswald,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#1B1410;padding:15px 24px;border-top:1px solid rgba(27,20,16,.1)">{{ t.navWhatsOn }}</a>
+    <a href="#groups" onClick="{{ closeNav }}" style="font:500 16px Oswald,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#1B1410;padding:15px 24px;border-top:1px solid rgba(27,20,16,.1)">{{ t.navGroups }}</a>
+    <a href="#reviews" onClick="{{ closeNav }}" style="font:500 16px Oswald,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#1B1410;padding:15px 24px;border-top:1px solid rgba(27,20,16,.1)">{{ t.navReviews }}</a>
+    <a href="#visit" onClick="{{ closeNav }}" style="font:500 16px Oswald,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#1B1410;padding:15px 24px;border-top:1px solid rgba(27,20,16,.1)">{{ t.navVisit }}</a>
+    <div style="{{ drawerLangStyle }}">
+      <button type="button" onClick="{{ setEN }}" style="{{ enBtn }}">EN</button>
+      <button type="button" onClick="{{ setNL }}" style="{{ nlBtn }}">NL</button>
+    </div>
+    <a href="#groups" onClick="{{ closeNav }}" style="{{ drawerBookStyle }}">{{ t.navBook }}</a>
+  </div>
+</div>
+
+<section id="top" data-screen-label="Hero" style="position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;background:#000;overflow:hidden">
+  <div style="position:absolute;inset:0;background:#000"></div>
+  <div style="{{ heroContentStyle }}">
+    <img src="./logo-concordia.png" alt="Concordia Studentbar" style="width:clamp(180px,40vw,320px);height:auto;display:block;filter:drop-shadow(0 10px 40px rgba(0,0,0,.55))">
+    <p style="margin:0;max-width:600px;font:400 clamp(18px,2.1vw,23px)/1.5 Barlow,sans-serif;color:rgba(251,248,243,.92);text-wrap:pretty">{{ t.heroTagline }}</p>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;pointer-events:auto;margin-top:4px">
+      <a href="#menu" style="flex:1 1 auto;min-width:170px;text-align:center;background:#F7C31A;color:#1B1410;font:600 14px Oswald,sans-serif;letter-spacing:.12em;text-transform:uppercase;padding:17px 26px;border-radius:7px" style-hover="background:#FBF8F3">{{ t.heroCta1 }}</a>
+      <a href="#visit" style="flex:1 1 auto;min-width:170px;text-align:center;border:1.5px solid rgba(251,248,243,.55);color:#FBF8F3;font:600 14px Oswald,sans-serif;letter-spacing:.12em;text-transform:uppercase;padding:17px 26px;border-radius:7px" style-hover="border-color:#F7C31A;color:#F7C31A">{{ t.heroCta2 }}</a>
+    </div>
+  </div>
+  <div style="position:relative;z-index:2;background:#1B1410;border-top:1px solid rgba(247,195,26,.28)">
+    <div style="max-width:1160px;margin:0 auto;padding:0 clamp(18px,4vw,24px);display:grid;grid-template-columns:{{ stripCols }}">
+      <div style="display:flex;align-items:center;gap:10px;padding:20px 0;font:500 15px Barlow,sans-serif;color:#F7F2E8">
+        <span style="{{ dotStyle }}"></span>{{ openNowLabel }}
+      </div>
+      <div style="{{ stripCellStyle }}">Oostzeedijk 56b, Rotterdam</div>
+      <div style="{{ stripCellStyle }}"><span style="color:#F7C31A">{{ t.heroStrip3 }}</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="about" data-screen-label="About" style="scroll-margin-top:70px;padding:clamp(58px,7vw,120px) clamp(18px,4vw,24px);background:#FBF8F3">
+  <div style="max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(34px,5vw,72px);align-items:center">
+    <div data-reveal>
+      <div style="font:500 12px Oswald,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:#8A5A0B">{{ t.aboutEyebrow }}</div>
+      <h2 style="margin:14px 0 0;font-family:Anton,sans-serif;font-weight:400;font-size:clamp(32px,5vw,54px);line-height:1.02;letter-spacing:.005em;text-transform:uppercase;color:#1B1410;text-wrap:balance">{{ t.aboutTitle }}</h2>
+      <p style="margin:20px 0 0;font:400 17.5px/1.7 Barlow,sans-serif;color:rgba(27,20,16,.75);text-wrap:pretty">{{ t.aboutP1 }}</p>
+      <p style="margin:22px 0 0;padding:16px 20px;border-left:3px solid #F7C31A;background:#fff;border-radius:0 10px 10px 0;font:italic 400 18px/1.55 Barlow,sans-serif;color:#1B1410">{{ t.aboutQuote }}</p>
+    </div>
+    <div data-reveal style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div style="grid-column:span 2;height:min(42vw,270px);border-radius:16px;overflow:hidden;position:relative">
+        <image-slot id="about-1" shape="rect" placeholder="The room, full and busy"></image-slot>
+      </div>
+      <div style="height:min(26vw,165px);border-radius:14px;overflow:hidden;position:relative">
+        <image-slot id="about-2" shape="rect" placeholder="Pool table / darts"></image-slot>
+      </div>
+      <div style="height:min(26vw,165px);border-radius:14px;overflow:hidden;position:relative">
+        <image-slot id="about-3" shape="rect" src="https://eetcafeconcordia.com/wp-content/uploads/2023/10/live-sports-600x296.png" placeholder="Taps / bar detail"></image-slot>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1160px;margin:clamp(38px,5vw,60px) auto 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px">
+    <sc-for list="{{ features }}" as="f" hint-placeholder-count="4">
+      <div data-reveal style="padding:22px;border-radius:14px;background:#fff;border:1px solid rgba(27,20,16,.1)" style-hover="border-color:#F7C31A">
+        <div style="font:600 17px Oswald,sans-serif;letter-spacing:.02em;text-transform:uppercase;color:#1B1410">{{ f.title }}</div>
+        <div style="margin-top:6px;font:400 15px/1.5 Barlow,sans-serif;color:rgba(27,20,16,.6)">{{ f.desc }}</div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="menu" data-screen-label="Menu" style="scroll-margin-top:70px;padding:clamp(58px,7vw,120px) clamp(18px,4vw,24px);background:#F2EBDF;border-top:1px solid rgba(27,20,16,.09);border-bottom:1px solid rgba(27,20,16,.09)">
+  <div style="max-width:940px;margin:0 auto">
+    <div style="text-align:center">
+      <div style="font:500 12px Oswald,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:#8A5A0B">{{ t.menuEyebrow }}</div>
+      <h2 style="margin:12px 0 0;font-family:Anton,sans-serif;font-weight:400;font-size:clamp(34px,5.4vw,58px);line-height:1;text-transform:uppercase;color:#1B1410">{{ t.menuTitle }}</h2>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:30px 0 0">
+      <sc-for list="{{ tabs }}" as="tab" hint-placeholder-count="2">
+        <button type="button" onClick="{{ tab.onClick }}" style="{{ tab.style }}">{{ tab.label }}</button>
+      </sc-for>
+    </div>
+    <div style="margin-top:24px;padding:clamp(18px,4vw,44px);border-radius:18px;background:#1B1410;color:#F7F2E8">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:14px;border-bottom:2px solid rgba(247,195,26,.4)">
+        <h3 style="margin:0;font-family:Anton,sans-serif;font-weight:400;font-size:clamp(22px,3.4vw,32px);line-height:1;text-transform:uppercase;color:#F7C31A">{{ activeTabLabel }}</h3>
+        <div style="font:500 12px Oswald,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,242,232,.45)">{{ t.menuPriceNote }}</div>
+      </div>
+      <div style="margin-top:8px;display:grid;grid-template-columns:{{ menuCols }};gap:clamp(20px,3vw,40px)">
+        <sc-for list="{{ sections }}" as="sec" hint-placeholder-count="4">
+          <div style="break-inside:avoid">
+            <div style="display:flex;align-items:center;gap:12px;margin:22px 0 4px">
+              <span style="{{ sec.titleStyle }}">{{ sec.title }}</span>
+              <span style="flex:1;height:1px;background:rgba(247,195,26,.28)"></span>
+              <span style="{{ sec.noteStyle }}">{{ sec.note }}</span>
+            </div>
+            <sc-for list="{{ sec.items }}" as="it" hint-placeholder-count="5">
+              <div style="display:flex;align-items:baseline;gap:12px;padding:12px 0;border-bottom:1px dashed rgba(247,242,232,.13)">
+                <div style="flex:1;min-width:0">
+                  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                    <span style="font:600 17.5px Oswald,sans-serif;letter-spacing:.01em">{{ it.name }}</span>
+                    <span style="{{ it.flagStyle }}">{{ it.flag }}</span>
+                  </div>
+                  <div style="{{ it.descStyle }}">{{ it.desc }}</div>
+                </div>
+                <div style="flex:none;font:600 17.5px Oswald,sans-serif;color:#F7C31A;font-variant-numeric:tabular-nums;white-space:nowrap">{{ it.price }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:14px;padding:18px 20px;border-radius:12px;background:#F7C31A;color:#1B1410">
+        <div style="font:600 13px Oswald,sans-serif;letter-spacing:.16em;text-transform:uppercase;background:#1B1410;color:#F7C31A;padding:9px 14px;border-radius:999px;flex:none">{{ t.hhBadge }}</div>
+        <div style="flex:1;min-width:200px;font:500 16px/1.45 Barlow,sans-serif">{{ t.hhText }}</div>
+      </div>
+    </div>
+    <p style="margin:14px 4px 0;font:italic 400 13.5px/1.5 Barlow,sans-serif;color:rgba(27,20,16,.42)">{{ t.menuDisclaimer }}</p>
+  </div>
+</section>
+
+<section id="whatson" data-screen-label="What's On" style="scroll-margin-top:70px;padding:clamp(58px,7vw,120px) clamp(18px,4vw,24px);background:#FBF8F3">
+  <div style="max-width:1160px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px">
+      <div>
+        <div style="font:500 12px Oswald,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:#8A5A0B">{{ t.eventsEyebrow }}</div>
+        <h2 style="margin:12px 0 0;font-family:Anton,sans-serif;font-weight:400;font-size:clamp(34px,5.4vw,58px);line-height:1;text-transform:uppercase;color:#1B1410">{{ t.eventsTitle }}</h2>
+      </div>
+      <p style="margin:0;max-width:400px;font:400 16.5px/1.6 Barlow,sans-serif;color:rgba(27,20,16,.6)">{{ t.eventsIntro }}</p>
+    </div>
+    <div style="margin-top:34px;display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px">
+      <sc-for list="{{ events }}" as="e" hint-placeholder-count="5">
+        <div data-reveal style="display:flex;flex-direction:column;gap:10px;padding:24px 22px;border-radius:16px;background:#1B1410;color:#F7F2E8" style-hover="transform:translateY(-3px)">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+            <span style="{{ e.tagStyle }}">{{ e.tag }}</span>
+            <span style="font:500 12.5px Oswald,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:rgba(247,242,232,.55)">{{ e.when }}</span>
+          </div>
+          <h3 style="margin:2px 0 0;font-family:Anton,sans-serif;font-weight:400;font-size:25px;line-height:1.05;text-transform:uppercase;color:#fff">{{ e.title }}</h3>
+          <p style="margin:0;font:400 15.5px/1.55 Barlow,sans-serif;color:rgba(247,242,232,.7)">{{ e.desc }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="groups" data-screen-label="Groups & Parties" style="scroll-margin-top:70px;padding:clamp(58px,7vw,120px) clamp(18px,4vw,24px);background:#F2EBDF;border-top:1px solid rgba(27,20,16,.09);border-bottom:1px solid rgba(27,20,16,.09)">
+  <div style="max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(30px,5vw,56px);align-items:start">
+    <div data-reveal>
+      <div style="font:500 12px Oswald,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:#8A5A0B">{{ t.groupsEyebrow }}</div>
+      <h2 style="margin:14px 0 0;font-family:Anton,sans-serif;font-weight:400;font-size:clamp(32px,5vw,54px);line-height:1.02;text-transform:uppercase;color:#1B1410;text-wrap:balance">{{ t.groupsTitle }}</h2>
+      <p style="margin:18px 0 0;font:400 17.5px/1.7 Barlow,sans-serif;color:rgba(27,20,16,.75);text-wrap:pretty">{{ t.groupsP }}</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px">
+        <div style="flex:1;min-width:140px;padding:20px;border-radius:14px;background:#fff;border:1px solid rgba(27,20,16,.1)">
+          <div style="font-family:Anton,sans-serif;font-size:38px;line-height:1;color:#1B1410">150</div>
+          <div style="margin-top:6px;font:500 12px Oswald,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(27,20,16,.6)">{{ t.groupsDine }}</div>
+        </div>
+        <div style="flex:1;min-width:140px;padding:20px;border-radius:14px;background:#fff;border:1px solid rgba(27,20,16,.1)">
+          <div style="font-family:Anton,sans-serif;font-size:38px;line-height:1;color:#1B1410">300</div>
+          <div style="margin-top:6px;font:500 12px Oswald,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(27,20,16,.6)">{{ t.groupsDrink }}</div>
+        </div>
+      </div>
+      <figure style="margin:20px 0 0;position:relative;border-radius:16px;overflow:hidden">
+        <img src="./photo-packed-night.jpg" alt="A packed Concordia on a live football night, flags overhead and the Wednesday happy hour sign lit up" style="display:block;width:100%;height:min(46vw,320px);object-fit:cover">
+        <figcaption style="position:absolute;left:0;right:0;bottom:0;padding:26px 20px 16px;background:linear-gradient(180deg,rgba(20,16,13,0),rgba(20,16,13,.88));font:500 14px Barlow,sans-serif;color:#F7F2E8">{{ t.groupsCaption }}</figcaption>
+      </figure>
+    </div>
+    <div data-reveal style="padding:clamp(26px,4vw,40px);border-radius:20px;background:#1B1410;color:#F7F2E8;display:flex;flex-direction:column;gap:22px">
+      <div>
+        <h3 style="margin:0;font-family:Anton,sans-serif;font-weight:400;font-size:clamp(24px,3vw,30px);line-height:1.05;text-transform:uppercase;color:#F7C31A">{{ t.enqTitle }}</h3>
+        <p style="margin:10px 0 0;font:400 16px/1.6 Barlow,sans-serif;color:rgba(247,242,232,.68)">{{ t.enqIntro }}</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:2px">
+        <sc-for list="{{ enqItems }}" as="q" hint-placeholder-count="4">
+          <div style="display:flex;align-items:baseline;gap:14px;padding:14px 0;border-bottom:1px dashed rgba(247,242,232,.15)">
+            <span style="flex:none;width:28px;font-family:Anton,sans-serif;font-size:17px;color:#F7C31A">{{ q.num }}</span>
+            <div style="flex:1;min-width:0">
+              <div style="font:600 17px Oswald,sans-serif;letter-spacing:.01em;color:#fff">{{ q.label }}</div>
+              <div style="margin-top:3px;font:400 14.5px/1.45 Barlow,sans-serif;color:rgba(247,242,232,.55)">{{ q.hint }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <a href="mailto:info@eetcafeconcordia.com?subject=Party%20enquiry" style="{{ enqMailStyle }}" style-hover="background:#fff">
+          <span style="font:600 13px Oswald,sans-serif;letter-spacing:.16em;text-transform:uppercase">{{ t.enqMailLabel }}</span>
+          <span style="font:500 16px Barlow,sans-serif">info@eetcafeconcordia.com</span>
+        </a>
+        <a href="tel:+31104140838" style="{{ enqCallStyle }}" style-hover="background:rgba(247,195,26,.12)">
+          <span style="font:600 13px Oswald,sans-serif;letter-spacing:.16em;text-transform:uppercase">{{ t.enqCallLabel }}</span>
+          <span style="font:500 16px Barlow,sans-serif">010-4140838</span>
+        </a>
+      </div>
+      <div style="font:400 14.5px/1.55 Barlow,sans-serif;color:rgba(247,242,232,.45)">{{ t.enqNote }}</div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" data-screen-label="Reviews" style="scroll-margin-top:70px;padding:clamp(58px,7vw,120px) clamp(18px,4vw,24px);background:#FBF8F3">
+  <div style="max-width:1160px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px">
+      <div>
+        <div style="font:500 12px Oswald,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:#8A5A0B">{{ t.reviewsEyebrow }}</div>
+        <h2 style="margin:12px 0 0;font-family:Anton,sans-serif;font-weight:400;font-size:clamp(34px,5.4vw,58px);line-height:1;text-transform:uppercase;color:#1B1410">{{ t.reviewsTitle }}</h2>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px">
+        <div style="font:500 15px Barlow,sans-serif;color:rgba(27,20,16,.6)">{{ t.reviewsSource }}</div>
+        <div style="display:flex;gap:8px">
+          <button type="button" onClick="{{ prevReview }}" aria-label="Previous review" style="width:48px;height:48px;border-radius:50%;border:1px solid rgba(27,20,16,.2);background:#fff;color:#1B1410;font:400 20px/1 Barlow,sans-serif;cursor:pointer" style-hover="background:#1B1410;color:#F7C31A;border-color:#1B1410">←</button>
+          <button type="button" onClick="{{ nextReview }}" aria-label="Next review" style="width:48px;height:48px;border-radius:50%;border:1px solid rgba(27,20,16,.2);background:#fff;color:#1B1410;font:400 20px/1 Barlow,sans-serif;cursor:pointer" style-hover="background:#1B1410;color:#F7C31A;border-color:#1B1410">→</button>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:32px;overflow:hidden;border-radius:20px">
+      <div style="{{ trackStyle }}">
+        <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="4">
+          <div style="{{ r.slideStyle }}">
+            <div style="height:100%;display:flex;flex-direction:column;gap:18px;padding:clamp(26px,4vw,44px);border-radius:20px;background:#1B1410;color:#F7F2E8">
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px">
+                <div style="font:500 18px Oswald,sans-serif;letter-spacing:.14em;color:#F7C31A">★★★★★</div>
+                <div style="font:500 13px Oswald,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(247,242,232,.45)">{{ r.meta }}</div>
+              </div>
+              <p style="margin:0;flex:1;font:400 clamp(18px,2.3vw,25px)/1.5 Barlow,sans-serif;color:#F7F2E8;text-wrap:pretty">{{ r.text }}</p>
+              <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;padding-top:16px;border-top:1px solid rgba(247,242,232,.16)">
+                <span style="font-family:Anton,sans-serif;font-size:20px;letter-spacing:.02em;text-transform:uppercase;color:#fff">{{ r.name }}</span>
+                <span style="font:400 14.5px Barlow,sans-serif;color:rgba(247,242,232,.5)">{{ r.credit }}</span>
+              </div>
+              <div style="{{ r.dishesStyle }}">{{ r.dishes }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="margin-top:20px;display:flex;justify-content:center;gap:8px">
+      <sc-for list="{{ dots }}" as="d" hint-placeholder-count="4">
+        <button type="button" onClick="{{ d.onClick }}" aria-label="Go to review" style="{{ d.style }}"></button>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="visit" data-screen-label="Visit Us" style="scroll-margin-top:70px;padding:clamp(58px,7vw,120px) clamp(18px,4vw,24px);background:#F2EBDF;border-top:1px solid rgba(27,20,16,.09)">
+  <div style="max-width:1160px;margin:0 auto">
+    <div style="text-align:center">
+      <div style="font:500 12px Oswald,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:#8A5A0B">{{ t.visitEyebrow }}</div>
+      <h2 style="margin:12px 0 0;font-family:Anton,sans-serif;font-weight:400;font-size:clamp(34px,5.4vw,58px);line-height:1;text-transform:uppercase;color:#1B1410">{{ t.visitTitle }}</h2>
+    </div>
+    <div style="margin-top:34px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="padding:clamp(20px,4vw,26px);border-radius:18px;background:#fff;border:1px solid rgba(27,20,16,.1)">
+          <div style="font:500 12px Oswald,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#8A5A0B">{{ t.visitHours }}</div>
+          <div style="margin-top:14px;display:flex;align-items:center;gap:9px;font:500 15.5px Barlow,sans-serif">
+            <span style="{{ dotStyle }}"></span>{{ openNowLabel }}
+          </div>
+          <div style="margin-top:14px;display:flex;flex-direction:column">
+            <sc-for list="{{ hours }}" as="h" hint-placeholder-count="3">
+              <div style="{{ h.rowStyle }}">
+                <span style="font:500 16.5px Oswald,sans-serif;letter-spacing:.02em;color:#1B1410">{{ h.day }}</span>
+                <span style="{{ h.timeStyle }}">{{ h.time }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="padding:clamp(20px,4vw,26px);border-radius:18px;background:#fff;border:1px solid rgba(27,20,16,.1);display:flex;flex-direction:column;gap:14px">
+          <div style="font:500 12px Oswald,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#8A5A0B">{{ t.visitContact }}</div>
+          <div>
+            <div style="font:600 21px/1.3 Oswald,sans-serif;color:#1B1410">Oostzeedijk 56b</div>
+            <div style="font:400 16px/1.5 Barlow,sans-serif;color:rgba(27,20,16,.6)">3063 BD Rotterdam</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;font:500 16.5px Barlow,sans-serif">
+            <a href="tel:+31104140838">010-4140838</a>
+            <a href="mailto:info@eetcafeconcordia.com">info@eetcafeconcordia.com</a>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <a href="https://www.instagram.com/concordiarotterdam/" target="_blank" rel="noopener" style="flex:1;min-width:130px;text-align:center;border:1px solid rgba(27,20,16,.18);border-radius:8px;padding:13px;font:500 13px Oswald,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#1B1410" style-hover="background:#F7C31A">Instagram</a>
+            <a href="https://nl-nl.facebook.com/people/Eetcafe-Concordia/100063555973400/" target="_blank" rel="noopener" style="flex:1;min-width:130px;text-align:center;border:1px solid rgba(27,20,16,.18);border-radius:8px;padding:13px;font:500 13px Oswald,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#1B1410" style-hover="background:#F7C31A">Facebook</a>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;min-height:330px">
+        <div style="flex:1;min-height:290px;border-radius:18px;overflow:hidden;border:1px solid rgba(27,20,16,.12);position:relative">
+          <iframe title="Map of Eetcafé Concordia, Oostzeedijk 56b Rotterdam" src="{{ mapSrc }}" style="width:100%;height:100%;border:0;display:block" loading="lazy"></iframe>
+        </div>
+        <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Oostzeedijk+56b,+3063+BD+Rotterdam" target="_blank" rel="noopener" style="text-align:center;background:#1B1410;color:#FBF8F3;font:500 13.5px Oswald,sans-serif;letter-spacing:.12em;text-transform:uppercase;padding:16px;border-radius:8px" style-hover="background:#8A5A0B">{{ t.directions }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="background:#1B1410;color:#F7F2E8;padding:clamp(42px,6vw,68px) clamp(18px,4vw,24px) 26px">
+  <div style="max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:32px">
+    <div>
+      <img src="./logo-concordia.png" alt="Concordia Studentbar" style="width:170px;height:auto;display:block">
+      <p style="margin:16px 0 0;font:400 15px/1.6 Barlow,sans-serif;color:rgba(247,242,232,.55);max-width:250px">{{ t.footerBlurb }}</p>
+    </div>
+    <div>
+      <div style="font:500 11px Oswald,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#F7C31A">{{ t.visitContact }}</div>
+      <div style="margin-top:12px;display:flex;flex-direction:column;gap:5px;font:400 15.5px/1.6 Barlow,sans-serif;color:rgba(247,242,232,.72)">
+        <span>Oostzeedijk 56b, 3063 BD Rotterdam</span>
+        <a href="tel:+31104140838" style="color:#F7C31A">010-4140838</a>
+        <a href="mailto:info@eetcafeconcordia.com" style="color:#F7C31A">info@eetcafeconcordia.com</a>
+      </div>
+    </div>
+    <div>
+      <div style="font:500 11px Oswald,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#F7C31A">{{ t.visitHours }}</div>
+      <div style="margin-top:12px;display:flex;flex-direction:column;gap:5px;font:400 15.5px/1.6 Barlow,sans-serif;color:rgba(247,242,232,.72)">
+        <span>{{ t.footerHours1 }}</span>
+        <span>{{ t.footerHours2 }}</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:11px;align-items:flex-start">
+      <div style="font:500 11px Oswald,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#F7C31A">{{ t.footerFollow }}</div>
+      <div style="display:flex;gap:12px;font:500 15.5px Barlow,sans-serif">
+        <a href="https://www.instagram.com/concordiarotterdam/" target="_blank" rel="noopener" style="color:#F7C31A">@concordiarotterdam</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:2px;border:1px solid rgba(247,242,232,.25);border-radius:999px;padding:3px;margin-top:4px">
+        <button type="button" onClick="{{ setEN }}" style="{{ enBtnDark }}">EN</button>
+        <button type="button" onClick="{{ setNL }}" style="{{ nlBtnDark }}">NL</button>
+      </div>
+      <a href="#top" style="margin-top:4px;font:500 12px Oswald,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#F7C31A">↑ {{ t.backToTop }}</a>
+    </div>
+  </div>
+  <div style="max-width:1200px;margin:30px auto 0;padding-top:18px;border-top:1px solid rgba(247,242,232,.14);font:400 13px Barlow,sans-serif;color:rgba(247,242,232,.35)">© 2026 Eetcafé Concordia · Oostzeedijk 56b, Rotterdam</div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;nl&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;'en'|'nl'&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#F7C31A&quot;,&quot;options&quot;:[&quot;#F7C31A&quot;,&quot;#E0A94B&quot;,&quot;#C8892B&quot;,&quot;#1B1410&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Style&quot;}}">
+const STR = {
+  en: {
+    navMenu:"Menu", navWhatsOn:"What's On", navGroups:"Groups", navReviews:"Reviews", navVisit:"Visit Us", navBook:"Book",
+    heroTagline:"Known and founded by locals, loved by students — a household name in Rotterdam.",
+    heroCta1:"See the menu", heroCta2:"Contact us", heroStrip3:"Happy hour on drinks · Wed & Sat 22:00–23:00",
+    aboutEyebrow:"About Concordia", aboutTitle:"Free pool, cheap beer, and nowhere better to end up.",
+    aboutP1:"A short walk from Erasmus University, with something on every night: free darts, free pool between 17:00 and 20:00, pub quizzes, bingo, beer pong — or just a seat at the bar with a plate of bitterballen. Student life is expensive enough, so our prices stay low — and happy hour on drinks runs every Wednesday and Saturday from 22:00 to 23:00.",
+    aboutQuote:"Little advice from us: try the Jägerbombs. They never fail to deliver.",
+    menuEyebrow:"Eat & Drink", menuTitle:"The Menu", menuPriceNote:"All prices in €", hhBadge:"Happy hour · drinks only",
+    hhText:"Buy one, get two on all drinks — every Wednesday and Saturday, 22:00 to 23:00. Food is not included.",
+    menuDisclaimer:"Food menu and prices as listed publicly (last updated Feb 2025). Drinks list is indicative — send us the bar card and we'll set exact prices.",
+    eventsEyebrow:"What's On", eventsTitle:"This week at Concordia",
+    eventsIntro:"Nights you can count on, every week of term.",
+    reviewsEyebrow:"Reviews", reviewsTitle:"What our customers say", reviewsSource:"5-star reviews on Google",
+    reviews:[
+      ["Napon Saereepapsakol","Local Guide · 44 reviews","Dine in · €10–20","A proper student-life experience! Been going there for a couple of years during university. Very international, all are super easy to talk to (particularly Lloyd the owner ♥). If you like a casual place to play pool and have some beers, or more, just go!","Cheeseburger with fries · Schnitzel XL · Pizza Pepperoni"],
+      ["Paul Victor","Local Guide · 17 reviews","Dine in · Dinner","Fantastic student bar with low prices and nice atmosphere. The staff is very polite, with student barmans offering nothing but smiles. I had delicious bitterballen with mustard, which I recommend as a snack if you go there.","Bitterballen"],
+      ["Eshaan Ghosh","Local Guide · 158 reviews","Dine in","The student bar to go to in Rotterdam Oost, excellent prices and friendly service. They also have sport screenings.",""],
+      ["Pankaj Garg","Local Guide · 215 reviews","Dine in · Dinner · €10–20","A real students' den, with students from all parts of the world enjoying together. Being next to Erasmus International House, this place is full of life. Look for offers on Tuesday & Friday.",""]
+    ],
+    groupsEyebrow:"Groups & Parties", groupsTitle:"Got something to celebrate? Bring everyone.",
+    groupsP:"Birthdays, team outings, association drinks, a sit-down dinner — we've done all of it. Tell us the date and the headcount and we'll sort the rest.",
+    groupsDine:"seated for dinner", groupsDrink:"for drinks",
+    groupsCaption:"A packed house on a match night — flags up, every table full.",
+    formTitle:"Enquire about your party", formIntro:"Send us the basics and we'll come back to you, usually the same day.",
+    formName:"Name", formDate:"Date", formSize:"Group size", formMsg:"What are you planning?", formSend:"Send enquiry", formOr:"Or reach us directly:",
+    enqTitle:"How to book your party", enqIntro:"No forms — just send us these four things and we'll come back to you, usually the same day.",
+    enqItems:[
+      ["Your name","And who the group is — friends, association, company team."],
+      ["Date of the event","Plus a rough arrival time. We're open Tue–Sat from 17:00."],
+      ["How many people","Anything from 10 to 300. Say if you want to eat."],
+      ["What you're planning","Birthday, drinks, dinner, a tournament — tell us the idea."]
+    ],
+    enqMailLabel:"Email us", enqCallLabel:"Or call the bar",
+    enqNote:"Big dates in term time fill up fast — earlier is better.",
+    visitEyebrow:"Visit Us", visitTitle:"Where to find us", visitHours:"Opening hours", visitContact:"Contact", directions:"Get directions",
+    footerBlurb:"A Rotterdam student bar. Warm, loud, and cheap in the right places.",
+    footerHours1:"Tue – Sat · 17:00 – 01:00", footerHours2:"Mon & Sun · Closed", footerFollow:"Follow", backToTop:"Back to top",
+    open:"Open now — until 01:00", closed:"Closed now — opens Tue 17:00", closedToday:"Closed today — open Tue–Sat from 17:00",
+    tabs:{food:"Food", snacks:"Snacks", drinks:"Drinks", shots:"Shots"},
+    hours:[["Monday","Closed"],["Tuesday – Saturday","17:00 – 01:00"],["Sunday","Closed"]],
+    features:[["Free pool 17:00–20:00","Free darts all night. No coins, no queue for the cue."],["Happy hour Wed & Sat","Buy one, get two on drinks, 22:00–23:00."],["Live football","Every big European league, all season."],["Parties up to 300","150 seated for dinner, 300 for drinks."]],
+    events:[
+      ["Pub Quiz","Weekly","Wednesday · 20:00","Six rounds, questionable trivia, a bar tab for the winners."],
+      ["Happy Hour","Happy hour","Wed & Sat · 22:00–23:00","Buy one, get two on drinks. One hour, make it count."],
+      ["Live Football","Live sport","All season","Premier League, La Liga, Bundesliga, Serie A and all three European cups."],
+      ["Beer Pong & Bingo","Weekly","Thursday · from 21:00","Sign up at the bar. Bragging rights included."],
+      ["Pool & Darts","Always on","Pool free 17:00–20:00","Darts free all night, every night. Pool is free until 20:00."],
+      ["Your Party Here","Groups","Any night","Up to 300 people. Tell us the date and we'll open the taps."]
+    ],
+    menu:{
+      food:[
+        ["Starters","",[
+          ["Garlic bread","Melted with garlic butter from the oven","5,00",0],
+          ["Fried onion rings","Chili sauce","6,50",0],
+          ["Calamares","Garlic sauce | Lemon","8,00",0],
+          ["Mozzarella sticks","Chili sauce","6,50",0],
+          ["Warm nachos","Cheese | Salsa | Guacamole | Sour cream","8,50",0],
+          ["Chicken wings","6 pc. / 12 pc. · Chili sauce","8,50 / 16,50",0]]],
+        ["Burgers","All served with fries & salad",[
+          ["Classic burger","Burger sauce","14,00",0],
+          ["Cheeseburger","Burger sauce | Cheddar","15,00",1],
+          ["Spicy truffle burger","Truffle mayonnaise | Jalapeños | Cheddar","16,00",1],
+          ["Double cheeseburger","2 burgers | Burger sauce | Cheddar","19,00",0],
+          ["Chicken burger","Burger sauce | Cheddar","14,00",0],
+          ["Veggie burger","Burger sauce | Cheddar · vegetarian","15,00",0]]],
+        ["Main courses","All served with fries & salad",[
+          ["Spare ribs","The house legend","18,00",1],
+          ["Schnitzel","Lemon","15,00",0],
+          ["Calamares","Garlic sauce | Lemon","15,00",0],
+          ["Chicken wings","Chili sauce","15,00",0],
+          ["Patat stoofvlees","Homemade stew | Truffle mayonnaise | Pickled onions","18,00",0]]],
+        ["Pizza's","",[
+          ["Margherita","Tomato | Mozzarella | Oregano","10,00",0],
+          ["Pepperoni","Tomato | Mozzarella | Pepperoni | Oregano","11,00",0]]]
+      ],
+      snacks:[
+        ["Snacks","To share at the bar",[
+          ["Dutch meatballs (bitterballen)","8 pc.","6,50",1],
+          ["Mini frikandellen","8 pc.","6,50",0],
+          ["Mini spring rolls","8 pc.","6,50",0],
+          ["Calamares","8 pc.","8,00",0],
+          ["Fried onion rings","8 pc.","6,50",0],
+          ["Cheese sticks","6 pc.","6,50",0],
+          ["Mozzarella sticks","6 pc.","6,50",0],
+          ["Mixed snacks","15 pc. / 25 pc. / 35 pc.","10,50 / 17,50 / 24,50",1],
+          ["Grilled ham & cheese sandwich","","4,00",0],
+          ["Broodje kroket","","4,00",0],
+          ["Broodje frikandel","","4,00",0],
+          ["French fries","","4,50",0],
+          ["Loaded fries","Truffle mayonnaise | Cheese | Crispy onions","7,50",0],
+          ["Nacho's","Cheese | Sour cream | Guacamole | Salsa","8,50",0],
+          ["Chicken wings","6 pc. / 12 pc.","8,50 / 16,50",0],
+          ["Extra sauce","","0,50",0]]]
+      ],
+      drinks:[
+        ["Beers on tap","",[
+          ["Pils","Small / Large","3,00 / 4,50",0],
+          ["Pitcher of pils","1 litre, made for sharing","12,50",1],
+          ["Weizen","In the proper glass","4,50",0],
+          ["Radler","Lighter, for the long night","3,50",0],
+          ["IPA","Rotating tap","5,00",0]]],
+        ["Bottled beers","",[
+          ["Desperados","Tequila-flavoured lager","4,50",0],
+          ["Corona","With lime","4,00",0],
+          ["Heineken 0.0","","3,50",0],
+          ["Guinness","Poured with patience","5,00",0],
+          ["Cider","","4,50",0]]],
+        ["Spirits & wine","",[
+          ["Vodka – Red Bull","","5,50",0],
+          ["Gin & tonic","Proper measure, plenty of ice","6,50",0],
+          ["Bacardi – cola","","5,00",0],
+          ["Whisky – cola","","5,00",0],
+          ["House wine","Red | White | Rosé","4,00",0],
+          ["Prosecco","Bottle","22,00",0]]],
+        ["Soft & hot","",[
+          ["Soft drinks","Cola | Fanta | Sprite | Tonic","2,50",0],
+          ["Fruit juice","","2,50",0],
+          ["Red Bull","","3,50",0],
+          ["Coffee / tea","","2,50",0],
+          ["Water","","2,00",0]]]
+      ],
+      shots:[
+        ["Shots","",[
+          ["Jägerbomb","Little advice from us: try these","5,00",1],
+          ["Jägermeister","Ice cold, always","3,00",0],
+          ["Tequila","Salt, lime, the whole ritual","3,00",0],
+          ["Sambuca","Ask for the flame","3,00",0],
+          ["Flügel","A Dutch student rite of passage","3,50",0],
+          ["Beerenburg","For the locals at the bar","2,50",0],
+          ["Apfelkorn","","2,50",0],
+          ["Shot tray","10 shots, pick your poison","25,00",1]]]
+      ]
+    },
+    flag:"House favourite"
+  },
+  nl: {
+    navMenu:"Menu", navWhatsOn:"Agenda", navGroups:"Groepen", navReviews:"Reviews", navVisit:"Bezoek ons", navBook:"Boeken",
+    heroTagline:"Bekend en opgericht door locals, geliefd bij studenten — een begrip in Rotterdam.",
+    heroCta1:"Bekijk het menu", heroCta2:"Contact", heroStrip3:"Happy hour op drankjes · wo & za 22:00–23:00",
+    aboutEyebrow:"Over Concordia", aboutTitle:"Gratis poolen, goedkoop bier, nergens beter belanden.",
+    aboutP1:"Op loopafstand van de Erasmus Universiteit, en elke avond is er iets: gratis darts, gratis poolen tussen 17:00 en 20:00, pubquiz, bingo, beerpong — of gewoon een plek aan de bar met een bak bitterballen. Het studentenleven is al duur genoeg, dus onze prijzen blijven laag — en elke woensdag en zaterdag is er happy hour op drankjes van 22:00 tot 23:00.",
+    aboutQuote:"Kleine tip van ons: neem de Jägerbombs. Die stellen nooit teleur.",
+    menuEyebrow:"Eten & drinken", menuTitle:"Het Menu", menuPriceNote:"Alle prijzen in €", hhBadge:"Happy hour · alleen drank",
+    hhText:"Buy one, get two op alle drankjes — elke woensdag en zaterdag, 22:00 tot 23:00. Eten valt er niet onder.",
+    menuDisclaimer:"Eten en prijzen volgens de openbaar vermelde kaart (laatst bijgewerkt feb. 2025). De drankenlijst is indicatief — stuur ons de barkaart voor exacte prijzen.",
+    eventsEyebrow:"Agenda", eventsTitle:"Deze week bij Concordia",
+    eventsIntro:"Avonden waar je op kunt bouwen, elke week van het collegejaar.",
+    reviewsEyebrow:"Reviews", reviewsTitle:"Wat onze gasten zeggen", reviewsSource:"5-sterrenreviews op Google",
+    reviews:[
+      ["Napon Saereepapsakol","Local Guide · 44 reviews","Ter plaatse · €10–20","Een echte studentenervaring! Ik kom er al een paar jaar tijdens mijn studie. Heel internationaal, met iedereen valt makkelijk te praten (vooral met Lloyd, de eigenaar ♥). Als je een informele plek zoekt om te poolen en een biertje te drinken, of meer: ga gewoon!","Cheeseburger met friet · Schnitzel XL · Pizza pepperoni"],
+      ["Paul Victor","Local Guide · 17 reviews","Ter plaatse · Diner","Fantastische studentenbar met lage prijzen en een fijne sfeer. Het personeel is heel vriendelijk, de studentbarmannen lachen alleen maar. Ik had heerlijke bitterballen met mosterd, echt een aanrader als snack.","Bitterballen"],
+      ["Eshaan Ghosh","Local Guide · 158 reviews","Ter plaatse","De studentenbar van Rotterdam Oost: uitstekende prijzen en vriendelijke service. Ze laten ook sport zien op de schermen.",""],
+      ["Pankaj Garg","Local Guide · 215 reviews","Ter plaatse · Diner · €10–20","Een echt studentenhol, met studenten van over de hele wereld die samen genieten. Naast Erasmus International House, dus altijd vol leven. Let op de aanbiedingen op dinsdag en vrijdag.",""]
+    ],
+    groupsEyebrow:"Groepen & feesten", groupsTitle:"Iets te vieren? Neem iedereen mee.",
+    groupsP:"Verjaardagen, personeelsuitjes, verenigingsborrels, een diner met de hele club — we hebben het allemaal gedaan. Geef ons de datum en het aantal, wij regelen de rest.",
+    groupsDine:"zitplaatsen bij diner", groupsDrink:"voor de borrel",
+    groupsCaption:"Volle bak op een wedstrijdavond — vlaggen op, elke tafel bezet.",
+    formTitle:"Vraag je feest aan", formIntro:"Stuur ons de basics, meestal reageren we dezelfde dag.",
+    formName:"Naam", formDate:"Datum", formSize:"Aantal personen", formMsg:"Wat ben je van plan?", formSend:"Verstuur aanvraag", formOr:"Of bel of mail direct:",
+    enqTitle:"Zo boek je je feest", enqIntro:"Geen formulieren — stuur ons deze vier dingen, meestal reageren we dezelfde dag.",
+    enqItems:[
+      ["Je naam","En wie de groep is — vrienden, vereniging, bedrijfsteam."],
+      ["Datum van het feest","Plus ongeveer hoe laat jullie komen. Wij zijn di–za open vanaf 17:00."],
+      ["Hoeveel personen","Van 10 tot 300. Geef aan of jullie willen eten."],
+      ["Wat je van plan bent","Verjaardag, borrel, diner, een toernooi — vertel het idee."]
+    ],
+    enqMailLabel:"Mail ons", enqCallLabel:"Of bel de bar",
+    enqNote:"Populaire data in het collegejaar zijn snel vol — hoe eerder, hoe beter.",
+    visitEyebrow:"Bezoek ons", visitTitle:"Waar je ons vindt", visitHours:"Openingstijden", visitContact:"Contact", directions:"Route",
+    footerBlurb:"Een Rotterdams studentencafé. Warm, luid, en goedkoop op de juiste plekken.",
+    footerHours1:"Di – za · 17:00 – 01:00", footerHours2:"Ma & zo · gesloten", footerFollow:"Volg ons", backToTop:"Naar boven",
+    open:"Nu open — tot 01:00", closed:"Nu gesloten — dinsdag open om 17:00", closedToday:"Vandaag gesloten — di–za vanaf 17:00",
+    tabs:{food:"Eten", snacks:"Snacks", drinks:"Drank", shots:"Shots"},
+    hours:[["Maandag","Gesloten"],["Dinsdag – zaterdag","17:00 – 01:00"],["Zondag","Gesloten"]],
+    features:[["Gratis pool 17:00–20:00","Darts de hele avond gratis. Geen muntjes, geen wachtrij."],["Happy hour wo & za","Buy one, get two op drankjes, 22:00–23:00."],["Live voetbal","Alle grote Europese competities."],["Feesten tot 300","150 zittend bij diner, 300 voor de borrel."]],
+    events:[
+      ["Pubquiz","Wekelijks","Woensdag · 20:00","Zes rondes, twijfelachtige kennisvragen, een barrekening voor de winnaars."],
+      ["Happy Hour","Happy hour","Wo & za · 22:00–23:00","Buy one, get two op drankjes. Eén uur, maak er wat van."],
+      ["Live voetbal","Live sport","Hele seizoen","Premier League, La Liga, Bundesliga, Serie A en alle drie de Europese cups."],
+      ["Beerpong & bingo","Wekelijks","Donderdag · vanaf 21:00","Inschrijven aan de bar. Eeuwige eer inbegrepen."],
+      ["Pool & darts","Altijd","Pool gratis 17:00–20:00","Darts elke avond gratis. Poolen is gratis tot 20:00."],
+      ["Jouw feest hier","Groepen","Elke avond","Tot 300 personen. Geef de datum door en de tap gaat open."]
+    ],
+    menu:{
+      food:[
+        ["Voorgerechten","",[
+          ["Garlic bread","Uit de oven met knoflookboter","5,00",0],
+          ["Gebakken uienringen","Chilisaus","6,50",0],
+          ["Calamares","Knoflooksaus | Citroen","8,00",0],
+          ["Mozzarellasticks","Chilisaus","6,50",0],
+          ["Warme nacho's","Kaas | Salsa | Guacamole | Zure room","8,50",0],
+          ["Chicken wings","6 st. / 12 st. · chilisaus","8,50 / 16,50",0]]],
+        ["Burgers","Allemaal met friet & salade",[
+          ["Classic burger","Burgersaus","14,00",0],
+          ["Cheeseburger","Burgersaus | Cheddar","15,00",1],
+          ["Spicy truffle burger","Truffelmayonaise | Jalapeño | Cheddar","16,00",1],
+          ["Dubbele cheeseburger","2 burgers | Burgersaus | Cheddar","19,00",0],
+          ["Chickenburger","Burgersaus | Cheddar","14,00",0],
+          ["Veggieburger","Burgersaus | Cheddar · vegetarisch","15,00",0]]],
+        ["Hoofdgerechten","Allemaal met friet & salade",[
+          ["Spareribs","De huislegende","18,00",1],
+          ["Schnitzel","Citroen","15,00",0],
+          ["Calamares","Knoflooksaus | Citroen","15,00",0],
+          ["Chicken wings","Chilisaus","15,00",0],
+          ["Patat stoofvlees","Huisgemaakt | Truffelmayonaise | Zilveruitjes","18,00",0]]],
+        ["Pizza's","",[
+          ["Margherita","Tomaat | Mozzarella | Oregano","10,00",0],
+          ["Pepperoni","Tomaat | Mozzarella | Pepperoni | Oregano","11,00",0]]]
+      ],
+      snacks:[
+        ["Snacks","Om te delen aan de bar",[
+          ["Bitterballen","8 st.","6,50",1],
+          ["Mini frikandellen","8 st.","6,50",0],
+          ["Mini loempia's","8 st.","6,50",0],
+          ["Calamares","8 st.","8,00",0],
+          ["Gebakken uienringen","8 st.","6,50",0],
+          ["Kaassticks","6 st.","6,50",0],
+          ["Mozzarellasticks","6 st.","6,50",0],
+          ["Bittergarnituur","15 st. / 25 st. / 35 st.","10,50 / 17,50 / 24,50",1],
+          ["Tosti ham-kaas","","4,00",0],
+          ["Broodje kroket","","4,00",0],
+          ["Broodje frikandel","","4,00",0],
+          ["Friet","","4,50",0],
+          ["Loaded fries","Truffelmayonaise | Kaas | Krokante ui","7,50",0],
+          ["Nacho's","Kaas | Zure room | Guacamole | Salsa","8,50",0],
+          ["Chicken wings","6 st. / 12 st.","8,50 / 16,50",0],
+          ["Extra saus","","0,50",0]]]
+      ],
+      drinks:[
+        ["Bier van de tap","",[
+          ["Pils","Klein / groot","3,00 / 4,50",0],
+          ["Pitcher pils","1 liter, om te delen","12,50",1],
+          ["Weizen","In het juiste glas","4,50",0],
+          ["Radler","Lichter, voor de lange avond","3,50",0],
+          ["IPA","Wisselende tap","5,00",0]]],
+        ["Bier op fles","",[
+          ["Desperados","Lager met tequila-smaak","4,50",0],
+          ["Corona","Met limoen","4,00",0],
+          ["Heineken 0.0","","3,50",0],
+          ["Guinness","Met geduld getapt","5,00",0],
+          ["Cider","","4,50",0]]],
+        ["Sterk & wijn","",[
+          ["Vodka – Red Bull","","5,50",0],
+          ["Gin-tonic","Ruime maat, veel ijs","6,50",0],
+          ["Bacardi – cola","","5,00",0],
+          ["Whisky – cola","","5,00",0],
+          ["Huiswijn","Rood | Wit | Rosé","4,00",0],
+          ["Prosecco","Fles","22,00",0]]],
+        ["Fris & warm","",[
+          ["Frisdrank","Cola | Fanta | Sprite | Tonic","2,50",0],
+          ["Vruchtensap","","2,50",0],
+          ["Red Bull","","3,50",0],
+          ["Koffie / thee","","2,50",0],
+          ["Water","","2,00",0]]]
+      ],
+      shots:[
+        ["Shots","",[
+          ["Jägerbomb","Kleine tip van ons: neem deze","5,00",1],
+          ["Jägermeister","Ijskoud, altijd","3,00",0],
+          ["Tequila","Zout, limoen, het hele ritueel","3,00",0],
+          ["Sambuca","Vraag om het vlammetje","3,00",0],
+          ["Flügel","Een Nederlandse studententraditie","3,50",0],
+          ["Beerenburg","Voor de locals aan de bar","2,50",0],
+          ["Apfelkorn","","2,50",0],
+          ["Shottray","10 shots, kies je gif","25,00",1]]]
+      ]
+    },
+    flag:"Huisfavoriet"
+  }
+};
+
+class Component extends DCLogic {
+  state = { lang: "en", tab: "food", navOpen: false, isMobile: false, isPhone: false, tick: 0, review: 0 };
+
+  componentDidMount() {
+    if (this.props.defaultLang === "nl") this.setState({ lang: "nl" });
+
+    this._resize = () => this.setState({ isMobile: window.innerWidth < 940, isPhone: window.innerWidth < 620, navOpen: false });
+    this._resize();
+    window.addEventListener("resize", this._resize);
+    this._timer = setInterval(() => this.setState(s => ({ tick: s.tick + 1 })), 60000);
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.style.opacity = 1; e.target.style.transform = "none"; io.unobserve(e.target); }
+    }), { threshold: 0.12 });
+    requestAnimationFrame(() => document.querySelectorAll("[data-reveal]").forEach(el => {
+      el.style.opacity = 0; el.style.transform = "translateY(20px)";
+      el.style.transition = "opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1)";
+      io.observe(el);
+    }));
+    this._io = io;
+  }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this._resize);
+    clearInterval(this._timer);
+    if (this._io) this._io.disconnect();
+  }
+
+  openState() {
+    const parts = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Amsterdam", weekday: "short", hour: "2-digit", hour12: false }).formatToParts(new Date());
+    const wd = parts.find(p => p.type === "weekday").value;
+    const hr = parseInt(parts.find(p => p.type === "hour").value, 10);
+    if (["Tue","Wed","Thu","Fri","Sat"].includes(wd) && hr >= 17) return { open: true, day: wd };
+    if (["Wed","Thu","Fri","Sat","Sun"].includes(wd) && hr < 1) return { open: true, day: wd };
+    return { open: false, day: wd };
+  }
+
+  renderVals() {
+    const accent = this.props.accent || "#F7C31A";
+    const t = STR[this.state.lang];
+    const isM = this.state.isMobile;
+    const isP = this.state.isPhone;
+    const pill = (on, dark) => ({
+      background: on ? accent : "transparent",
+      color: on ? "#1B1410" : (dark ? "rgba(247,242,232,.7)" : "rgba(27,20,16,.6)"),
+      font: "500 12px Oswald,sans-serif", letterSpacing: ".1em", border: "none",
+      borderRadius: "999px", padding: "7px 11px", cursor: "pointer"
+    });
+    const os = this.openState();
+    const tabStyle = on => ({
+      font: (isP ? "500 12.5px" : "500 13.5px") + " Oswald,sans-serif", letterSpacing: ".1em", textTransform: "uppercase",
+      padding: isP ? "11px 15px" : "13px 22px", borderRadius: "999px", cursor: "pointer",
+      border: "1px solid " + (on ? "#1B1410" : "rgba(27,20,16,.18)"),
+      background: on ? "#1B1410" : "transparent",
+      color: on ? "#F7C31A" : "rgba(27,20,16,.7)",
+      transition: "all .2s ease"
+    });
+    let raw = t.menu[this.state.tab] || [];
+    if (raw.length === 1 && raw[0][2].length > 7 && !isM) {
+      const [title, note, list] = raw[0];
+      const half = Math.ceil(list.length / 2);
+      raw = [[title, note, list.slice(0, half)], ["", "", list.slice(half)]];
+    }
+    const sections = raw.map(([title, note, list]) => ({
+      title, note,
+      titleStyle: title
+        ? { fontFamily: "Anton,sans-serif", fontSize: "15px", letterSpacing: ".14em", textTransform: "uppercase", color: accent, whiteSpace: "nowrap" }
+        : { display: "none" },
+      noteStyle: note
+        ? { font: "400 12.5px Barlow,sans-serif", color: "rgba(247,242,232,.4)", whiteSpace: "nowrap" }
+        : { display: "none" },
+      items: list.map(([name, desc, price, star]) => ({
+        name, desc, price: "€ " + price,
+        flag: star ? "★" : "",
+        flagStyle: star
+          ? { font: "500 11px Oswald,sans-serif", color: "#1B1410", background: accent, padding: "2px 7px", borderRadius: "999px" }
+          : { display: "none" },
+        descStyle: desc ? { marginTop: "3px", font: "400 14.5px/1.45 Barlow,sans-serif", color: "rgba(247,242,232,.58)" } : { display: "none" }
+      }))
+    }));
+
+    return {
+      t,
+      heroContentStyle: {
+        position: "relative", zIndex: 2, pointerEvents: "none", maxWidth: "1160px", width: "100%",
+        margin: "0 auto", flex: "1", display: "flex", flexDirection: "column",
+        justifyContent: "center", alignItems: "flex-start",
+        gap: isP ? "18px" : "22px",
+        padding: isP ? "88px 18px 44px" : "clamp(100px,15vh,150px) clamp(18px,4vw,24px) clamp(34px,6vh,88px)"
+      },
+      headerBarStyle: {
+        maxWidth: "1160px", margin: "0 auto", display: "flex", alignItems: "center",
+        padding: isP ? "0 14px" : "0 20px", height: isP ? "60px" : "74px", gap: isP ? "10px" : "18px"
+      },
+      headerLogoStyle: { height: isP ? "34px" : "44px", width: "auto", display: "block" },
+      langWrapStyle: isP ? { display: "none" } : {
+        display: "flex", alignItems: "center", gap: "2px",
+        border: "1px solid rgba(27,20,16,.18)", borderRadius: "999px", padding: "3px", flex: "none"
+      },
+      bookBtnStyle: isP ? { display: "none" } : {
+        flex: "none", background: "#1B1410", color: "#FBF8F3",
+        font: "500 13px Oswald,sans-serif", letterSpacing: ".12em", textTransform: "uppercase",
+        padding: "13px 20px", borderRadius: "6px"
+      },
+      drawerLangStyle: !isP ? { display: "none" } : { display: "flex", alignItems: "center", gap: "2px", border: "1px solid rgba(27,20,16,.18)", borderRadius: "999px", padding: "3px", margin: "14px 24px 18px", alignSelf: "flex-start" },
+      drawerBookStyle: !isP ? { display: "none" } : { display: "block", margin: "0 24px 20px", textAlign: "center", background: "#1B1410", color: "#FBF8F3", font: "500 13px Oswald,sans-serif", letterSpacing: ".12em", textTransform: "uppercase", padding: "16px 20px", borderRadius: "8px" },
+      enqMailStyle: {
+        display: "flex", alignItems: isP ? "flex-start" : "center", flexDirection: isP ? "column" : "row",
+        justifyContent: "space-between", gap: isP ? "4px" : "14px",
+        padding: isP ? "16px 18px" : "18px 22px", borderRadius: "10px",
+        background: accent, color: "#1B1410"
+      },
+      enqCallStyle: {
+        display: "flex", alignItems: isP ? "flex-start" : "center", flexDirection: isP ? "column" : "row",
+        justifyContent: "space-between", gap: isP ? "4px" : "14px",
+        padding: isP ? "16px 18px" : "18px 22px", borderRadius: "10px",
+        border: "1px solid rgba(247,195,26,.5)", color: accent
+      },
+      navRowStyle: isM ? { display: "none" } : { display: "flex", gap: "26px", alignItems: "center" },
+      burgerStyle: isM
+        ? { display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+            width: "44px", height: "44px", minWidth: "44px", minHeight: "44px",
+            background: "transparent", border: "none", padding: "0", cursor: "pointer", flex: "none", marginRight: "-6px" }
+        : { display: "none" },
+      drawerStyle: (isM && this.state.navOpen)
+        ? { display: "flex", flexDirection: "column", background: "#FBF8F3", borderTop: "1px solid rgba(27,20,16,.1)" }
+        : { display: "none" },
+      toggleNav: () => this.setState(s => ({ navOpen: !s.navOpen })),
+      closeNav: () => this.setState({ navOpen: false }),
+      setEN: () => this.setState({ lang: "en" }),
+      setNL: () => this.setState({ lang: "nl" }),
+      enBtn: pill(this.state.lang === "en", false),
+      nlBtn: pill(this.state.lang === "nl", false),
+      enBtnDark: pill(this.state.lang === "en", true),
+      nlBtnDark: pill(this.state.lang === "nl", true),
+      openNowLabel: os.open ? t.open : (os.day === "Mon" || os.day === "Sun" ? t.closedToday : t.closed),
+      dotStyle: {
+        width: "9px", height: "9px", borderRadius: "50%", flex: "none",
+        background: os.open ? "#2F9E44" : "#C0392B",
+        animation: os.open ? "cdPulse 2.4s ease-in-out infinite" : "none"
+      },
+      features: t.features.map(([title, desc]) => ({ title, desc })),
+      tabs: ["food","snacks","drinks","shots"].map(id => ({
+        label: t.tabs[id], style: tabStyle(this.state.tab === id),
+        onClick: () => this.setState({ tab: id })
+      })),
+      activeTabLabel: t.tabs[this.state.tab],
+      sections,
+      menuCols: isM ? "1fr" : "1fr 1fr",
+      stripCols: isM ? "1fr" : "auto 1fr auto",
+      stripCellStyle: {
+        display: "flex", alignItems: "center", padding: isM ? "0 0 20px" : "20px 0",
+        marginLeft: isM ? "0" : "34px", paddingLeft: isM ? "0" : "34px",
+        borderLeft: isM ? "none" : "1px solid rgba(247,242,232,.16)",
+        font: "500 15px Barlow,sans-serif", color: "rgba(247,242,232,.82)", whiteSpace: "nowrap"
+      },
+      reviews: t.reviews.map(([name, credit, meta, text, dishes]) => ({
+        name, credit, meta, text,
+        dishes: dishes ? "★ " + dishes : "",
+        dishesStyle: dishes
+          ? { font: "500 13.5px Oswald,sans-serif", letterSpacing: ".08em", textTransform: "uppercase", color: accent }
+          : { display: "none" },
+        slideStyle: { flex: "0 0 100%", minWidth: "100%", padding: "0", boxSizing: "border-box", minHeight: isM ? "0" : "300px" }
+      })),
+      trackStyle: {
+        display: "flex",
+        transform: "translateX(-" + (this.state.review * 100) + "%)",
+        transition: "transform .55s cubic-bezier(.4,.1,.2,1)"
+      },
+      dots: t.reviews.map((_, i) => ({
+        onClick: () => this.setState({ review: i }),
+        style: {
+          width: i === this.state.review ? "44px" : "26px", height: "30px", borderRadius: "999px",
+          border: "none", cursor: "pointer", padding: 0, background: "transparent",
+          backgroundImage: "linear-gradient(" + (i === this.state.review ? "#1B1410,#1B1410" : "rgba(27,20,16,.22),rgba(27,20,16,.22)") + ")",
+          backgroundRepeat: "no-repeat", backgroundPosition: "center",
+          backgroundSize: (i === this.state.review ? "30px" : "10px") + " 10px",
+          transition: "background-size .3s ease, width .3s ease"
+        }
+      })),
+      prevReview: () => this.setState(s => ({ review: (s.review - 1 + t.reviews.length) % t.reviews.length })),
+      nextReview: () => this.setState(s => ({ review: (s.review + 1) % t.reviews.length })),
+      events: t.events.map(([title, tag, when, desc]) => {
+        const hh = tag.toLowerCase().indexOf("happy") === 0;
+        return {
+          title, tag, when, desc,
+          tagStyle: {
+            font: "500 10.5px Oswald,sans-serif", letterSpacing: ".16em", textTransform: "uppercase",
+            padding: "5px 10px", borderRadius: "999px",
+            background: hh ? accent : "transparent",
+            color: hh ? "#1B1410" : accent,
+            border: "1px solid " + (hh ? accent : "rgba(247,195,26,.4)")
+          }
+        };
+      }),
+      hours: t.hours.map(([day, time], i) => ({
+        day, time,
+        rowStyle: { display: "flex", justifyContent: "space-between", gap: "14px", padding: "11px 0", borderBottom: i < 2 ? "1px dashed rgba(27,20,16,.14)" : "none" },
+        timeStyle: { font: "500 16.5px Oswald,sans-serif", color: i === 1 ? "#1B1410" : "rgba(27,20,16,.42)", fontVariantNumeric: "tabular-nums" }
+      })),
+      enqItems: t.enqItems.map(([label, hint], i) => ({ num: "0" + (i + 1), label, hint })),
+      mapSrc: (() => {
+        // Verified against OSM: "Eetcafe Concordia, 56B, Oostzeedijk, Kralingen-Oost, Rotterdam"
+        const lat = 51.91997, lon = 4.51169, dLat = 0.0022, dLon = 0.0058;
+        return "https://www.openstreetmap.org/export/embed.html?layer=mapnik" +
+          "&bbox=" + (lon - dLon).toFixed(5) + "%2C" + (lat - dLat).toFixed(5) +
+          "%2C" + (lon + dLon).toFixed(5) + "%2C" + (lat + dLat).toFixed(5) +
+          "&marker=" + lat.toFixed(5) + "%2C" + lon.toFixed(5);
+      })(),
+      submitEnquiry: e => {
+        e.preventDefault();
+        const f = e.target;
+        const g = n => (f.elements[n] && f.elements[n].value) || "—";
+        const body = "Name: " + g("name") + "\nDate: " + g("date") + "\nGroup size: " + g("size") + "\n\n" + g("message");
+        window.location.href = "mailto:info@eetcafeconcordia.com?subject=" +
+          encodeURIComponent("Party enquiry — " + g("name")) + "&body=" + encodeURIComponent(body);
+      }
+    };
+  }
+}
+
+</script>
+</body>
+</html>
